@@ -1,0 +1,26 @@
+<launch>
+	<!--arg name="rectify_pt_cloud" default="false"/-->
+
+	<node pkg="kinect2_bridge" type="kinect2_bridge" name="kinect2"/>
+	
+	<node pkg="tf" type="static_transform_publisher" name="kinect_ir_camera_tf"
+		args="0.195 0.0445 0 -1.57 0 -1.57 map kinect2_ir_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="kinect_rgb_camera_tf"
+		args="0.195 0.0445 0 -1.57 0 -1.57 map kinect2_rgb_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="kinect_laser_tf"
+		args=".05 -0.15 0 0 0 0 map kinect2_laser 100"/>
+	<node pkg="nodelet" type="nodelet" args="manager" name="nodelet_manager"/>
+	<node pkg="nodelet" type="nodelet" name="depth_points"
+		args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+		<remap from="camera_info" to="/kinect2/qhd/camera_info"/>
+		<remap from="image_rect" to="/kinect2/qhd/image_depth_rect"/>
+		<remap from="points"     to="/kinect2/qhd/points" />
+	</node>
+	<node name="kinectdepth_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan">
+		<remap from="camera_info" to="kinect2/qhd/camera_info"/>
+		<remap from="image" to="kinect2/qhd/image_depth_rect"/>
+		<remap from="scan" to="kinect2/qhd/scan"/>
+		<param name="output_frame_id" value="kinect2_laser"/>
+    </node>
+
+</launch>

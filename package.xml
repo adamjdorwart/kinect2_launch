@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package>
+  <name>kinect2_launch</name>
+  <version>0.0.1</version>
+  <description>Launch package for Kinect2</description>
+  <maintainer email="c_dorwart@braincorporation.com">Adam</maintainer>
+  <license>Brain Corporation</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>kinect2_bridge</build_depend>
+  <run_depend>kinect2_bridge</run_depend>
+</package>

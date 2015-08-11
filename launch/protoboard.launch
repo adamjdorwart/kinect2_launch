@@ -1,0 +1,33 @@
+<launch>
+	<!--arg name="rectify_pt_cloud" default="false"/-->
+
+	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+		<arg name="fps_limit" value="2"/>
+		<arg name="sensor" value="125650234247"/>
+		<arg name="base_name" value="center_camera"/>
+	</include>
+	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+		<arg name="fps_limit" value="2"/>
+		<arg name="sensor" value="313498734147"/>
+		<arg name="base_name" value="left_camera"/>
+	</include>
+	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+		<arg name="fps_limit" value="2"/>
+		<arg name="sensor" value="002556351047"/>
+		<arg name="base_name" value="right_camera"/>
+	</include>
+
+	<node pkg="tf" type="static_transform_publisher" name="center_camera_ir_camera_tf"
+		args="0 0 0 -1.57079633 0 -1.57079633 map center_camera_ir_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="camera_center_rgb_camera_tf"
+		args="0 0 0 -1.57079633 0 -1.57079633 map center_camera_rgb_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="left_camera_ir_camera_tf"
+		args="-0.1275 0.2275 0 -0.872664626 0 -1.57079633 map left_camera_ir_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="camera_left_rgb_camera_tf"
+		args="-0.1275 0.2275 0 -0.872664626 0 -1.57079633 map left_camera_rgb_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="right_camera_ir_camera_tf"
+		args="-0.1275 -0.2275 0 -2.26892803 0 -1.57079633 map right_camera_ir_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="right_camera_rgb_camera_tf"
+		args="-0.1275 -0.2275 0 -2.26892803 0 -1.57079633 map right_camera_rgb_optical_frame 100"/>
+
+</launch>
