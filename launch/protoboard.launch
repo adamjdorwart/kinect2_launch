@@ -8,35 +8,33 @@
 		<arg name="reg_method" value="opencl"/>
 		<arg name="worker_threads" value="2"/>
 		<arg name="queue_size" value="5"/>
+		<arg name="publish_tf" value="true"/>
 	</include>
 	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
 		<arg name="sensor" value="313498734147"/>
 		<arg name="base_name" value="left_camera"/>
 		<arg name="depth_method" value="opengl"/>
-                <arg name="reg_method" value="opencl"/>
-                <arg name="worker_threads" value="2"/>
-                <arg name="queue_size" value="5"/>
+		<arg name="reg_method" value="opencl"/>
+		<arg name="worker_threads" value="2"/>
+		<arg name="queue_size" value="5"/>
+		<arg name="publish_tf" value="true"/>
 	</include>
 	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
 		<arg name="sensor" value="002556351047"/>
 		<arg name="base_name" value="right_camera"/>
 		<arg name="depth_method" value="opengl"/>
-                <arg name="reg_method" value="opencl"/>
-                <arg name="worker_threads" value="2"/>
-                <arg name="queue_size" value="5"/>
+		<arg name="reg_method" value="opencl"/>
+		<arg name="worker_threads" value="2"/>
+		<arg name="queue_size" value="5"/>
+		<arg name="publish_tf" value="true"/>
 	</include>
 
-	<node pkg="tf" type="static_transform_publisher" name="center_camera_ir_camera_tf"
-		args="0 0 0 -1.57079633 0 -1.57079633 map center_camera_ir_optical_frame 100"/>
-	<node pkg="tf" type="static_transform_publisher" name="camera_center_rgb_camera_tf"
-		args="0 0 0 -1.57079633 0 -1.57079633 map center_camera_rgb_optical_frame 100"/>
-	<node pkg="tf" type="static_transform_publisher" name="left_camera_ir_camera_tf"
-		args="-0.1275 0.2275 0 -0.872664626 0 -1.57079633 map left_camera_ir_optical_frame 100"/>
-	<node pkg="tf" type="static_transform_publisher" name="camera_left_rgb_camera_tf"
-		args="-0.1275 0.2275 0 -0.872664626 0 -1.57079633 map left_camera_rgb_optical_frame 100"/>
-	<node pkg="tf" type="static_transform_publisher" name="right_camera_ir_camera_tf"
-		args="-0.1275 -0.2275 0 -2.26892803 0 -1.57079633 map right_camera_ir_optical_frame 100"/>
-	<node pkg="tf" type="static_transform_publisher" name="right_camera_rgb_camera_tf"
-		args="-0.1275 -0.2275 0 -2.26892803 0 -1.57079633 map right_camera_rgb_optical_frame 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="center_camera_tf"
+		args="0 0 0 -1.57079633 0 -1.57079633 visual_sensors center_camera_link 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="left_camera_tf"
+		args="-0.1275 0.2275 0 -0.872664626 0 -1.57079633 visual_sensors left_camera_link 100"/>
+	<node pkg="tf" type="static_transform_publisher" name="right_camera_tf"
+		args="-0.1275 -0.2275 0 -2.26892803 0 -1.57079633 visual_sensors right_camera_link 100"/>
 
 </launch>
+
