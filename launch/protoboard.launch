@@ -2,19 +2,28 @@
 	<!--arg name="rectify_pt_cloud" default="false"/-->
 
 	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
-		<arg name="fps_limit" value="2"/>
 		<arg name="sensor" value="125650234247"/>
 		<arg name="base_name" value="center_camera"/>
+		<arg name="depth_method" value="opengl"/>
+		<arg name="reg_method" value="opencl"/>
+		<arg name="worker_threads" value="2"/>
+		<arg name="queue_size" value="5"/>
 	</include>
 	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
-		<arg name="fps_limit" value="2"/>
 		<arg name="sensor" value="313498734147"/>
 		<arg name="base_name" value="left_camera"/>
+		<arg name="depth_method" value="opengl"/>
+                <arg name="reg_method" value="opencl"/>
+                <arg name="worker_threads" value="2"/>
+                <arg name="queue_size" value="5"/>
 	</include>
 	<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
-		<arg name="fps_limit" value="2"/>
 		<arg name="sensor" value="002556351047"/>
 		<arg name="base_name" value="right_camera"/>
+		<arg name="depth_method" value="opengl"/>
+                <arg name="reg_method" value="opencl"/>
+                <arg name="worker_threads" value="2"/>
+                <arg name="queue_size" value="5"/>
 	</include>
 
 	<node pkg="tf" type="static_transform_publisher" name="center_camera_ir_camera_tf"
